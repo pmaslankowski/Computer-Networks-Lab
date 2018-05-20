@@ -11,13 +11,13 @@ int main(int argc, char **argv) {
     }
     
     int port;
-    if(sscanf(argv[1], "%d", &port) < 0) {
+    if(sscanf(argv[1], "%d", &port) != 1) {
         printf("usage:\n\t./server port directory\n");
         return 0;    
     }
 
     char path[100];
-    if(sscanf(argv[2], "%s", path) < 0) {
+    if(sscanf(argv[2], "%s", path) != 1) {
         printf("usage:\n\t./server port directory\n");
         return 0;      
     }

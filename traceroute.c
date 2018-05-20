@@ -22,6 +22,9 @@ int main(int argc, char **argv) {
     get_address_from_arguments(argc, argv, addr);
 
     int sockfd = open_icmp_socket();
+    if(sockfd == -1) 
+    	return 1;
+    
     pid_t pid = getpid();
     
     for(int ttl=1; ttl <= 30; ttl++) {

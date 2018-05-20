@@ -1,10 +1,19 @@
-all: icmp_receive traceroute
+all: traceroute
 
-icmp_receive: icmp_receive.c
-	gcc -std=gnu11 -Wall -Wextra -g icmp_receive.c -o icmp_receive
+traceroute: traceroute.o communication.o utility.o
+	gcc -std=gnu99 -Wall -Wextra traceroute.o communication.o utility.o -o traceroute
 
-traceroute: traceroute.c communication.c communication.h utility.c utility.h
-	gcc -std=gnu11 -Wall -Wextra -g traceroute.c communication.c utility.c -o traceroute
+traceroute.o: traceroute.c 
+	gcc -std=gnu99 -Wall -Wextra -c traceroute.c communication.c utility.c
+
+communication.o: communication.c communication.h
+	gcc -std=gnu99 -Wall -Wextra -c communication.c
+
+utility.o: utility.c utility.h
+	gcc -std=gnu99 -Wall -Wextra -c utility.c
 
 clean:
-	rm icmp_receive
+	rm *.o
+
+distclean:
+	rm traceroute
